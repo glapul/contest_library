@@ -1,5 +1,5 @@
-//Must be tested and finished
-#include<cstdio>
+//Dinic algorithm
+//Michał Glapa 2013
 #include<vector>
 #include<algorithm>
 #include<queue>
@@ -39,7 +39,7 @@ class FlowNetwork
                 vector<Edge> & tmp = graph[akt];
                 for(int i=0;i<(int)tmp.size();i++)
                 {
-                    if(d[tmp[i].to]==-1)
+                    if(tmp[i].f && d[tmp[i].to]==-1)
                     {
                         d[tmp[i].to]=d[akt]+1;
                         q.push(tmp[i].to);
@@ -81,13 +81,13 @@ class FlowNetwork
                 flow+=dfs(source,INF);
             return flow;
         }
-        void add_edge(int u, int v, int f)
+        void add_edge(int u, int v, long long f)
         {
             if(find_edge.find(make_pair(u,v))==find_edge.end())
             {
                 int us = graph[u].size(),vs = graph[v].size();
-                graph[u].push_back(Edge(v,f,vs));
-                graph[v].push_back(Edge(u,0,us));
+                graph[u].push_back(Edge(v,vs,f));
+                graph[v].push_back(Edge(u,us,0));
                 find_edge[make_pair(u,v)] = us;
                 find_edge[make_pair(v,u)] = vs;
             }
@@ -98,12 +98,3 @@ class FlowNetwork
             }
         }
 };
-int main()
-{
-    FlowNetwork g = FlowNetwork(4,0,3);
-    g.add_edge(0,1,1000);
-    g.add_edge(0,2,1000);
-    g.add_edge(1,3,1000);
-    g.add_edge(2,3,1000);
-    printf("dd\n",g.get_max_flow());
-}
