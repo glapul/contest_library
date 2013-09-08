@@ -50,7 +50,7 @@ class FlowNetwork
         }
         long long dfs(int v,long long cap)
         {
-            if(v==sink)
+            if(v==sink || cap==0)
                 return cap;
             int sum=0;
             for(;pt[v]<(int)graph[v].size();pt[v]++)
@@ -62,7 +62,8 @@ class FlowNetwork
                     nx.f-=pushed;
                     graph[nx.to][nx.cross_ref].f+=pushed;
                     sum+=pushed;
-                    if(nx.f)
+                    cap-=pushed;
+                    if(nx.f==0)
                         break;
                 }
             }
@@ -75,7 +76,7 @@ class FlowNetwork
             vis = vector<bool> (n+1);
             graph = vector<vector<Edge> > (n+1);
         }
-        long long get_max_flow()
+        long long max_flow()
         {
             while(bfs())
                 flow+=dfs(source,INF);
