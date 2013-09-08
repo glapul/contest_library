@@ -5,7 +5,6 @@
 #include<queue>
 #include<map>
 using namespace std;
-using namespace tr1;
 struct Edge
 {
     int to, cross_ref;
@@ -18,7 +17,7 @@ class FlowNetwork
     private:
         int n, source, sink;
         long long flow;
-        const long long INF = 1000000000000000000LL;
+        static const long long INF = 1000000000000000000LL;
         vector<int> d,pt;
         vector<bool> vis;
         vector<vector<Edge> > graph;
@@ -54,14 +53,14 @@ class FlowNetwork
             if(v==sink)
                 return cap;
             int sum=0;
-            for(;pt[v]<graph[v].size();pt[v]++)
+            for(;pt[v]<(int)graph[v].size();pt[v]++)
             {
                 Edge & nx = graph[v][pt[v]];
                 if(d[nx.to]==d[v]+1 && nx.f)
                 {
                     int pushed = dfs(nx.to,min(cap,nx.f));
                     nx.f-=pushed;
-                    graph[nx.to][nx.cross_ref].f+=pushed
+                    graph[nx.to][nx.cross_ref].f+=pushed;
                     sum+=pushed;
                     if(nx.f)
                         break;
@@ -76,13 +75,13 @@ class FlowNetwork
             vis = vector<bool> (n+1);
             graph = vector<vector<Edge> > (n+1);
         }
-        long long getMaxFlow()
+        long long get_max_flow()
         {
             while(bfs())
-                flow+=dfs(source);
+                flow+=dfs(source,INF);
             return flow;
         }
-        void addEdge(int u, int v, int f)
+        void add_edge(int u, int v, int f)
         {
             if(find_edge.find(make_pair(u,v))==find_edge.end())
             {
@@ -99,3 +98,12 @@ class FlowNetwork
             }
         }
 };
+int main()
+{
+    FlowNetwork g = FlowNetwork(4,0,3);
+    g.add_edge(0,1,1000);
+    g.add_edge(0,2,1000);
+    g.add_edge(1,3,1000);
+    g.add_edge(2,3,1000);
+    printf("dd\n",g.get_max_flow());
+}
