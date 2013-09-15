@@ -1,5 +1,10 @@
 //Dinic algorithm
 //Michał Glapa 2013
+
+//USAGE:
+//FlowNetwork F = FlowNetwork(n); //where n is the number of vertices
+//to add edge F.add_edge(int from, int to, int capacity)
+// to get max flow  use F.max_flow()
 #include<vector>
 #include<algorithm>
 #include<queue>

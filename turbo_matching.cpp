@@ -2,6 +2,11 @@
 //Warning : this code DOES NOT check if the graph given is bipartite!
 //Complexity : very fast, usually works as fast as O(ElogE)
 //Copyright Michał Glapa 2013
+//USAGE
+// first create an instance : MatchingGraph g = MatchingGraph(n); where n is number of verices
+// then add edges : g.add_edge(u,v);
+//  to get max matching g.max_matching();
+//  you can check who is matched to vertex i by g.match[i]; (-1 if unmatched)
 #include<vector>
 using namespace std;
 class MatchingGraph
@@ -53,7 +58,7 @@ class MatchingGraph
             graph[u].push_back(v);
             graph[v].push_back(u);
         }
-        int get_max_matching()
+        int max_matching()
         {
             while(matching());
             return res;
