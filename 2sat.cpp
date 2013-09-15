@@ -27,6 +27,7 @@ class Two_SAT
             srand(1337);
             graph = vector<vector<int> > (2*n);
             vis = vector<bool> (2*n);
+            fail=false;
         }
         bool solve() //returns true if there exists a labeling and false otherwise
         {
@@ -35,33 +36,25 @@ class Two_SAT
             for(int i=0;i<2*n;i++)
                 order[i]=i;
             random_shuffle(order.begin(),order.end());
-            try
+            for(vector<int>::iterator i = order.begin();i!=order.end();i++)
             {
-                for(vector<int>::iterator i = order.begin();i!=order.end();i++)
+                if(vis[*i]||vis[neg(*i)])
+                    continue;
+                changes.clear();
+                dfs(*i);
+                if(fail)
                 {
-                    if(vis[*i]||vis[neg(*i)])
-                        continue;
+                    for(int j=0;j<(int)changes.size();j++)
+                        vis[changes[j]]=false;
+                    fail=false;
                     changes.clear();
-                    try
-                    {
-                        dfs(*i);
-                    }
-                    catch(int a)
-                    {
-                        for(int i=0;i<(int)changes.size();i++)
-                            vis[changes[i]]=false;
-                        changes.clear();
-                        dfs(neg(a));
-                    }
-
+                    dfs(neg(*i));
+                    if(fail)
+                        break;
                 }
-            }
-            catch(int a)
-            {
-                return false;
-            }
-            return true;
 
+            }
+            return !fail;
         }
         bool get_variable(int x) // true if x is true, false otherwise
         {
@@ -69,6 +62,7 @@ class Two_SAT
         }
     private:
         int n;
+        bool fail;
         vector<vector<int> > graph;
         vector<bool> vis;
         vector<int> changes;
@@ -77,7 +71,7 @@ class Two_SAT
             changes.push_back(v);
             vis[v]=true;
             if(vis[neg(v)])
-                    throw(-1);
+                fail=true;
             for(vector<int>::iterator i=graph[v].begin();i!=graph[v].end();i++)
                 if(!vis[*i])
                     dfs(*i);
