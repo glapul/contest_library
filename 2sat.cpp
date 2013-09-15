@@ -1,4 +1,3 @@
-#include<cstdio>
 #include<vector>
 #include<cstdlib>
 #include<algorithm>
@@ -78,30 +77,3 @@ class Two_SAT
 
         }
 };
-int main()
-{
-    int n,m;
-    scanf("%d %d",&n,&m);
-    Two_SAT G = Two_SAT(m);
-    for(int i=0;i<n;i++)
-    {
-        int a,b;
-        scanf("%d %d",&a,&b);
-        G.add_alt((a>0 ? a-1 : G.neg(-a-1)),(b>0 ? b-1 : G.neg(-b-1)));
-    }
-    if(G.solve())
-    {
-        vector<int> see;
-        for(int i=0;i<m;i++)
-            if(G.get_variable(i))
-                see.push_back(i+1);
-        printf("%d\n",(int)see.size());
-        for(int i=0;i<(int)see.size();i++)
-            printf("%d ",see[i]);
-        printf("\n");
-    }
-    else
-    {
-        printf("NO\n");
-    }
-}
