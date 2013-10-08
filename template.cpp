@@ -29,7 +29,7 @@ using namespace tr1;
 #define y second
 #define VAR(i,n) __typeof(n) i = (n)
 #define FOREACH(i,c) for(VAR(i,(c).begin());i!=(c).end();i++)
-#define FORDEACH(i,c) for( VAR(i,(c).rbegin(),i!=(c).rend();i++)
+#define FORDEACH(i,c) for( VAR(i,(c).rbegin()),i!=(c).rend();i++)
 #define REP(i,n) FOR(i,0,n)
 #define ld long double
 const int INF = 1000000009;
