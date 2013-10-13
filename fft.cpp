@@ -1,4 +1,3 @@
-#include<cstdio>
 
 #include<vector>
 #include<complex>
