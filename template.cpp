@@ -12,6 +12,7 @@
 #include<cmath>
 #include<iostream>
 #include<cstring>
+#include<complex>
 #include<tr1/unordered_set>
 #include<tr1/unordered_map>
 using namespace std;
