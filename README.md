@@ -9,4 +9,5 @@ Contents:
  2. Turbo-matching - turbo_matching.cpp
  3. 2-SAT - 2sat.cpp
  4. FFT and polynomial multiplication - fft.cpp
+ 5. Number theory algorithms - number_theory.cpp
  0. (BONUS) algorithm contest template - template.cpp
