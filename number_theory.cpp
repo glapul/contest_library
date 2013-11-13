@@ -1,15 +1,40 @@
-#include<cstdio>
 #include<cstdlib>
 #include<time.h>
 #include<vector>
 #include<algorithm>
 using namespace std;
 
-struct NumberTheory
+struct NT
 {
-    long long gcd( long long a, long long b)
+    long long gcd( long long a, long long b) // Euclidean algorithm
     {
         return b==0 ? a : gcd(b,a%b);
+    }
+    long long ex_gcd_x,ex_gcd_y;
+    long long ex_gcd(long long a, long long b) // Extended euclidean algorithm. x and y are in ex_gcd_x and ..._y .
+    {
+        if (b==0)
+        {
+            ex_gcd_x=1;
+            ex_gcd_y=0;
+            return a;
+        }
+        else
+        {
+            long long d = ex_gcd(b,a%b);
+            long long tmp = ex_gcd_y;
+            ex_gcd_y = ex_gcd_x - (a/b)*ex_gcd_y;
+            ex_gcd_x=tmp;
+            return d;
+        }
+    }
+    long long modular_inverse(long long a, long long n) // assumes that modular inverse does exist.
+    {
+        ex_gcd(a,n);
+        ex_gcd_x%=n;
+        ex_gcd_x+=n;
+        ex_gcd_x%=n;
+        return ex_gcd_x;
     }
     long long modular_exponentation(long long a, long long k, long long mod)
     {
@@ -24,6 +49,7 @@ struct NumberTheory
         return (r+mod)%mod;
     }
     /*
+    //use this if 32 bit processor and you are dealing with ints only
     inline long long mul(long long a, long long b, long long c)
     {
         return ((a*b)%c+c)%c;
@@ -55,7 +81,7 @@ struct NumberTheory
         asm( "mulq %%rbx ;" "divq %%rcx ;" : "=d"(res) : "a"(a), "b"(b), "c"(p) );
         return res <0 ? res+p : res;
     }
-    bool miller_rabin(long long n)
+    bool miller_rabin(long long n) //miller-rabin primality test, in the deterministic variant
     {
 
         int a [11] = {2,3,5,7,11,13,17,19,23,29,31};
@@ -92,13 +118,13 @@ struct NumberTheory
         }
         return 1;
     }
-    long long tab [5] = {1,-1,3,5,2};
-    long long C;
-    long long rho (long long x, long long n)
+    long long tab [5] = {1,-1,3,5,2}; // DO NOT TOUCH
+    long long C; // DO NOT TOUCH
+    long long rho (long long x, long long n) // rho function. DO NOT TOUCH
     {
         return (modular_exponentation(x,2,n)+ C+2*n)%n;
     }
-    long long find_factor(long long n)
+    long long find_factor(long long n) // finds a factor in the pollard's rho heuristic
     {
         C=tab[rand()%5];
         long long x=2, y=2,d=1;
@@ -112,7 +138,7 @@ struct NumberTheory
             return -1;
         return d;
     }
-    vector<long long> rho_pollard_factor(long long n)
+    vector<long long> rho_pollard_factor(long long n) // returns vector of primes whose product equals n. NOT SORTED.
     {
         srand(time(NULL));
         if(miller_rabin(n))
@@ -132,7 +158,7 @@ struct NumberTheory
         res.insert(res.end(),res2.begin(),res2.end());
         return res;
     }
-    vector<long long> slow_factor(long long n)
+    vector<long long> slow_factor(long long n) // O(sqrt(n)) factorization. Needed for pollards_rho!
     {
         long long d=n;
         vector<long long > res;
@@ -149,20 +175,3 @@ struct NumberTheory
         return res;
     }
 };
-int main()
-{
-    NumberTheory x;
-    for(int i=2;i<500;i++)
-        if(x.miller_rabin(i))
-            printf("%d ",i);
-    printf("\n");
-    for(long long i=1000000000000000000LL;i<1000000000000000099LL;i++)
-    {
-        vector<long long> tmp = x.rho_pollard_factor(i);
-        sort(tmp.begin(),tmp.end());
-            printf("%lld = ",i);
-            for(int j=0;j<tmp.size();j++)
-                printf("%lld ",tmp[j]);
-            printf("\n");
-    }
-}
