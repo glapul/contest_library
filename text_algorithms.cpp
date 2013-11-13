@@ -13,7 +13,52 @@ vector<int> kmp (string & s)
     }
     return P;
 }
+vector<int> pref(string & s)
+{
+    int last=0,lastbeg;
+    vector<int>res;
+    res.push_back(0);
+    for(int i=1;i<s.length();i++)
+    {
+        int tmp=0;
+        if(i<last)
+            tmp=min(res[i-lastbeg],last-i);
+        while(i+tmp<s.length() &&s[tmp]==s[i+tmp])
+            tmp++;
+        if(i+tmp>last)
+        {
+            last=i+tmp;
+            lastbeg=i;
+        }
+        res.push_back(tmp);
+    }
+    return res;
+}
+//testowac
+vector<int> manacher(string &s)
+{
+    string t;
+    for(int i=0;i<s.length()-1;i++)
+    {
+        t+=s[i]
+        t+=(char)7; //symbol ktorego nie ma w tekscie
+    }
+    t+=s[s.length()-1];
+    int n= t.length();
+    vector<int> res;
+    int furthest=-1, center;
+    for(int i=0;i<n;i++)
+    {
+        int tmp=0;
+        if( i<=furthest)
+            tmp = furthest-i;
+        while(i-tmp-1 >=0 && i+tmp+1 <n && t[i-tmp-1]==t[i+tmp+1])
+            tmp++;
+        res
+    }
 
+
+}
 vector<int> suffix_array(string & s)
 {
     int k=0;
