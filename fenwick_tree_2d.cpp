@@ -2,9 +2,7 @@
 using namespace std;
 
 const int MX = 1000;
-
 int tp[MX][MX];
-
 void update(int x, int y, int v)
 {
     for(;x<MX;x+=x&-x)
@@ -19,9 +17,7 @@ int query(int x, int y)
             res+=tp[x][yy];
     return res;
 }
-int main()
+int rect_query(int x1, int x2, int y1, int y2) //x1>=x2, y1>=y2
 {
-    update(2,1,3);
-    update(1,2,4);
-    printf("%d\n %d\n %d\n %d\n",query(1,1),query(2,1),query(1,2),query(2,2));
+    return query(x1,y1)-query(x2-1,y1)-query(x1,y2-1)+query(x2-1,y2-1);
 }
