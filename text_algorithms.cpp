@@ -1,3 +1,39 @@
+#include<vector>
+#include<algorithm>
+#include<iostream>
+using namespace std;
+#define FOREACH(i,c) for(__typeof((c).begin()) i = (c).begin();i!=(c).end();i++)
+const long long P=1000000009;
+const long long P2=P*P;
+const long long p=137;
+struct p2hashword
+{
+    long long mult(long long a, long long b)
+    {
+        long long res=  (((a%P)*(b/P))%P)*P + (((a/P)*(b%P))%P)*P +(a%P)*(b%P);
+        return ((res%P2)+P2)%P2;
+    }
+    vector<long long>hash;
+    vector<long long>powp;
+    p2hashword(){}
+    p2hashword(string s)
+    {
+        long long h=0;
+        for(int i=0;i<s.size();i++)
+        {
+            powp.push_back(i==0 ? 1 : mult(p,powp[i-1]));
+            h=mult(h,p);
+            h+=s[i];
+            h%=P2;
+            hash.push_back(h);
+        }
+    }
+    long long query(int a, int b)
+    {
+        return (((a==0 ? hash[b] :hash[b]-mult(hash[a-1],powp[b-a+1]))%P2)+P2)%P2;
+    }
+};
+
 vector<int> kmp (string & s)
 {
     vector<int>P;
@@ -40,7 +76,7 @@ vector<int> manacher(string &s)
     string t;
     for(int i=0;i<s.length()-1;i++)
     {
-        t+=s[i]
+        t+=s[i];
         t+=(char)7; //symbol ktorego nie ma w tekscie
     }
     t+=s[s.length()-1];
@@ -51,13 +87,24 @@ vector<int> manacher(string &s)
     {
         int tmp=0;
         if( i<=furthest)
-            tmp = furthest-i;
+            tmp =min(res[center-(i-center)], furthest-i);
         while(i-tmp-1 >=0 && i+tmp+1 <n && t[i-tmp-1]==t[i+tmp+1])
             tmp++;
-        res
+        if(i+tmp >furthest)
+        {
+            furthest=i+tmp;
+            center=i;
+        }
+        res.push_back(tmp);
     }
-
-
+    for(int i=0;i<res.size();i++)
+    {
+        if(i%2==0)
+            res[i]=res[i]/2;
+        else
+            res[i]=(res[i]+1)/2;
+    }
+    return res;
 }
 vector<int> suffix_array(string & s)
 {
@@ -107,5 +154,15 @@ vector<int> lcp(string & s,vector<int> & sa)
         l=max(0,l-1);
     }
     return lcp;
+}
+int main()
+{
+    string s;
+    for(int i=0;i<1000000;i++)
+        s+='a';
+    p2hashword x = p2hashword(s);
+    for(int i=0;i<1000000-10000;i++)
+        if(x.query(0,10000)!=x.query(i,i+10000))
+            cerr<<"WTF\n";
 }
 
