@@ -155,14 +155,3 @@ vector<int> lcp(string & s,vector<int> & sa)
     }
     return lcp;
 }
-int main()
-{
-    string s;
-    for(int i=0;i<1000000;i++)
-        s+='a';
-    p2hashword x = p2hashword(s);
-    for(int i=0;i<1000000-10000;i++)
-        if(x.query(0,10000)!=x.query(i,i+10000))
-            cerr<<"WTF\n";
-}
-
