@@ -8,6 +8,7 @@ const long long P2=P*P;
 const long long p=137;
 struct p2hashword
 {
+
     long long mult(long long a, long long b)
     {
         long long res=  (((a%P)*(b/P))%P)*P + (((a/P)*(b%P))%P)*P +(a%P)*(b%P);
@@ -77,7 +78,7 @@ vector<int> manacher(string &s)
     for(int i=0;i<s.length()-1;i++)
     {
         t+=s[i];
-        t+=(char)7; //symbol ktorego nie ma w tekscie
+        t+=(char)'_'; //symbol ktorego nie ma w tekscie
     }
     t+=s[s.length()-1];
     int n= t.length();

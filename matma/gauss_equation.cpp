@@ -1,8 +1,13 @@
 
 #include<vector>
 #include<algorithm>
+#include<cmath>
 using namespace std;
 vector<vector<double> > matrix;
+bool eq(double a, double b)
+{
+    return abs(a-b)<10e-9;
+}
 void swap_row(int a, int b)
 {
 	swap(matrix[a], matrix[b]);
@@ -28,7 +33,7 @@ void elim()
 	}
 	for (int i = n - 1; i >= 0; i--)
 	{
-		if (matrix[i][i] != 0)
+		if (!eq(matrix[i][i],0.0))
 		{
 			for (int j = i - 1; j>=0; j--)
 				add_row(i, j, -matrix[j][i] / matrix[i][i]);
