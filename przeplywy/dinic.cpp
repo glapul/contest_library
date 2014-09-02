@@ -1,10 +1,11 @@
+////////////////////////////////////////////////////////////////////////////////
 //Dinic algorithm
 //Michał Glapa 2013
 
 //USAGE:
 //FlowNetwork F = FlowNetwork(n); //where n is the number of vertices
 //to add edge F.add_edge(int from, int to, int capacity)
-// to get max flow  use F.max_flow()
+// to get max flow  use F.compute_max_flow()
 #include<vector>
 #include<algorithm>
 #include<queue>
@@ -81,7 +82,7 @@ class FlowNetwork
             vis = vector<bool> (n+1);
             graph = vector<vector<Edge> > (n+1);
         }
-        long long max_flow()
+        long long compute_max_flow()
         {
             while(bfs())
                 flow+=dfs(source,INF);
@@ -104,3 +105,4 @@ class FlowNetwork
             }
         }
 };
+////////////////////////////////////////////////////////////////////////////////
