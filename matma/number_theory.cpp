@@ -4,6 +4,10 @@
 #include<algorithm>
 using namespace std;
 
+inline long long mod(long long x, long long m)
+{
+    return ((x%m)+m)%m;
+}
 long long gcd( long long a, long long b) // Euclidean algorithm
 {
     return b==0 ? a : gcd(b,a%b);
@@ -79,6 +83,23 @@ long long mul(long long a, long long b, long long p) // piob mowi, ze dziala
     asm( "mulq %%rbx ;" "divq %%rcx ;" : "=d"(res) : "a"(a), "b"(b), "c"(p) );
     return res <0 ? res+p : res;
 }
+struct factorial_related
+{
+    long long P;
+    vector<long long> v;
+    factorial_related(int n, long long P):P(P)
+    {
+        v.push_back(1);
+        for(int i=1;i<=n;i++)
+            v.push_back((i*v.back())%P);
+    }
+    long long choose(int n, int k)
+    {
+        long long y1 = modular_inverse(v[n-k],P),
+                  y2 = modular_inverse(v[k],P);
+        return mod(((y1*y2)%P)*v[n],P);
+    }
+};
 bool miller_rabin(long long n) //miller-rabin primality test, in the deterministic variant
 {
 

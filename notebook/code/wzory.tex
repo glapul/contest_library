@@ -1,0 +1,157 @@
+\documentclass[10pt]{article}
+\usepackage[top=0.4in, bottom=0.4in, left=0.6in, right=0.1in, a5paper]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}  
+\usepackage{amsmath}
+\usepackage{multicol}
+\pagestyle{empty}
+\begin{document}
+\parindent 0pt
+\setlength{\parskip}{8pt}
+\setlength\multicolsep{8pt}
+
+Całki:
+ 
+$\int\sqrt{a^2-x^2}\;dx = \frac{x}{2}\sqrt{a^2-x^2}+\frac{a^2}{2}\arcsin\frac{x}{|a|} \mbox{(}|x|\leq|a|)$
+ 
+$\int\sqrt{x^2+a^2}\;dx 
+=\frac{x}{2}\sqrt{x^2+a^2}+\frac{a^2}{2}\,\ln\left(x+\sqrt{x^2+a^2}\right) = \frac{x}{2}\sqrt{x^2+a^2}+\frac{a^2}{2}\,\mathrm{arsinh}\frac{x}{|a|}$
+ 
+$\int\frac{dx}{\sqrt{a^2-x^2}} = \arcsin\frac{x}{|a|} \qquad\mbox{(}|x|<|a|\mbox{)}$
+ 
+$\int\frac{x\;dx}{\sqrt{a^2-x^2}} =-\sqrt{a^2-x^2}\qquad\mbox{(}|x|<|a|\mbox{)}$
+ 
+$\int\frac{dx}{\sqrt{x^2+a^2}} =\ln\left(x+\sqrt{x^2+a^2}\right)$
+ 
+Wzory trygonometryczne:
+
+\begin{multicols}{2}
+
+$\sin (x \pm y) = \sin x \cdot \cos y  \pm \cos x \cdot \sin y$
+
+$\mbox{tg } (x \pm y) = \frac{\mbox{tg } x \pm \mbox{tg } y}{1 \mp \mbox{tg } x \cdot \mbox{tg } y}$
+
+$\left| \sin\frac{1}{2}x \right|=\sqrt{\frac{1-\cos x}{2}}$
+
+$\left| \operatorname{tg}\frac{1}{2}x \right|=\sqrt{\frac{1-\cos x}{1+\cos x}}$
+
+$\operatorname{tg}\frac{1}{2}x =\frac{1-\cos x}{\sin x}=\frac{\sin x}{1+\cos x}$
+
+\columnbreak
+
+$\cos (x \pm y) = \cos x \cdot \cos y  \mp \sin x \cdot \sin y$
+
+$\mbox{ctg } (x \pm y) = \frac{\mbox{ctg } x \cdot \mbox{ctg } y \mp 1}{\mbox{ctg } y \pm \mbox{ctg } x}$ 
+
+$\left| \cos\frac{1}{2}x \right|=\sqrt{\frac{1+\cos x}{2}}$
+
+$\left| \operatorname{ctg}\frac{1}{2}x \right|=\sqrt{\frac{1+\cos x}{1-\cos x}}$
+
+$\operatorname{ctg}\frac{1}{2}x=\frac{1+\cos x}{\sin x}=\frac{\sin x}{1-\cos x}$
+
+\end{multicols}
+
+
+ 
+Długość krzywej $f(x)$: $s = \int_{a}^{b} \sqrt { 1 + [f'(x)]^2 }\, dx$
+ 
+Długość krzywej $X(t), Y(t)$: $s = \int_{a}^{b} \sqrt { [X'(t)]^2 + [Y'(t)]^2 }\, dt$
+ 
+ 
+Symbol Legendre'a ($p\in P$, $p>2$): $\left(\frac a p \right)\equiv a^{(p-1)/2}$
+
+\begin{multicols}{2}
+
+$\left(\frac {ab} p \right) = \left(\frac a p \right)\left(\frac b p \right)$
+ 
+$\left(\frac {-1} p \right) = (-1)^{\frac{p-1}2}$
+
+\columnbreak
+
+$\left(\frac 2 p \right) = (-1)^{\frac{p^2-1}8}$
+ 
+$\left(\frac q p \right)\left(\frac p q \right) = (-1)^{\frac{(p-1)(q-1)}4}$
+
+\end{multicols}
+ 
+Symbol Newtona:
+ 
+$\sum_{k=0}^n {n \choose k} ^2 = {{2n} \choose n} \quad\quad\quad \sum_{k=1}^n k{n \choose k} ^2 = n2^{n-1} \quad\quad\quad \sum_{k=0}^n {r \choose k}{s \choose n-k} = {r+s \choose m+n}$
+
+Liczby Stirlinga I rodzaju (liczba permutacji $n$ elementów o $k$ cyklach):
+
+\begin{multicols}{2}
+
+$\left[{n+1\atop k}\right] = n \left[{n\atop k}\right] + \left[{n\atop k-1}\right]$
+
+\columnbreak
+
+$\sum_{p=k}^{n} {\left[{n\atop p}\right]\binom{p}{k}} = \left[{n+1\atop k+1}\right]$
+
+\end{multicols}
+
+Liczby Stirlinga II rodzaju (liczba podziałów zbioru $n$-elementowego na $k$ klas)
+
+\begin{multicols}{2}
+
+    $\left\{\begin{matrix} n \\ k \end{matrix}\right\} = \frac{1}{k!}\sum_{j=0}^k (-1)^{k-j}{k \choose j} j^n$
+
+\columnbreak
+
+$\left\{{n+1\atop k}\right\} = k \left\{{ n \atop k }\right\} + \left\{{n\atop k-1}\right\}$
+
+\end{multicols}
+
+$\left\{\begin{matrix}n\\k\end{matrix}\right\}\equiv\begin{pmatrix}z\\w\end{pmatrix}\ \pmod{2},\quad
+z = n - \left\lceil\displaystyle\frac{k + 1}{2}\right\rceil,\ w = \left\lfloor\displaystyle\frac{k - 1}{2}\right\rfloor$
+
+Jeśli każde 2 elementy zbioru muszą być odległe o co najmniej $d$:
+
+$S^d(n, k) = S(n-d+1, k-d+1), n \geq k \geq d$
+
+Liczby Bella (liczba podziałów zbioru $n$ - elementowego):
+\begin{multicols}{2}
+
+$B_{n+1}=\sum_{k=0}^{n}{{n \choose k}B_k}$
+
+\columnbreak
+
+$B_{p^m+n}\equiv mB_n+B_{n+1}\ (\operatorname{mod}\ p)$
+
+\end{multicols}
+
+Lemat Burnside'a: $|X/G| = \frac{1}{|G|}\sum_{g \in G}|X^g|$ gdzie $G$ jest grupą działającą na $X$,
+
+$Gx \stackrel{def}{ = } \{g(x): g \in G \}$ (orbita elementu $x \in X$), $X/G$ jest zbiorem wszystkich orbit,
+
+$X^g \stackrel{def}{ = } \{x\in X: g(x)=x\}$ (zbiór punktów stałych dla elementu $g \in G$).
+
+Inne:
+
+$\operatorname{perm} (A) = (-1)^n \sum_{S\subseteq\{1,\dots,n\}} (-1)^{|S|} \prod_{i=1}^n \sum_{j\in S} a_{ij}$
+
+Jeśli $f(n)=\sum_{d|n}g(d)$, to $g(n) = \sum_{d|n}\mu(d)f\left ( \frac n d \right )$
+
+gdzie $\mu(1) = 1$, $\mu(p^2 \cdot a) = 0$,  $\mu(p_1 \cdot p_2 \cdot \ldots \cdot p_k) = (-1)^k$ dla $p$, $p_i$ pierwszych.
+ 
+Liczba Catalana (nawiasowania): $C_n = \frac 1 {n+1} {{2n} \choose n}$
+ 
+Liczba nieporządków (permutacji bez p. stałych): $!n = n!\sum_{i=0}^n\frac{(-1)^i}{i!}$
+ 
+Pole trójkąta na sferze: $R^2(A+B+C-\pi)$, gdzie $A,B,C$ - kąty na sferze.
+
+Twierdzenie tangensów: $\frac{a-b}{a+b} = \frac{\tan[\frac{1}{2}(\alpha-\beta)]}{\tan[\frac{1}{2}(\alpha+\beta)]}.$
+
+Objętość bryły obrotowej: $\pi \int_a^b f(x)^2 dx$
+
+Powierzchnia bryły obrotowej: $2\pi\int_a^b|f(x)|\sqrt{1+(f'(x))^2} dx$
+
+Parametryzowana (obrót wokół x): $2\pi\int_a^b|y(t)|\sqrt{(\frac{dx}{dt})^2+(\frac{dy}{dt})^2} dt$
+
+Obrót 3D wokół osi $(u_x,u_y,u_z)$ o kąt $\theta$ (cs = cos, sn = sin):
+$$\left[\begin{array}{ccc}
+cs\theta+u_x^2(1-cs\theta)&u_x u_y (1-cs\theta)-u_z sn\theta&u_x u_z (1-cs\theta) +u_y sn\theta\\
+u_y u_x (1-cs\theta)+u_z sn\theta&cs\theta+u_y^2(1-cs\theta)&u_y u_z (1-cs\theta) -u_x sn\theta\\
+u_z u_x (1-cs\theta) -u_y sn\theta&u_z u_y (1-cs\theta)+u_x sn\theta)&cs\theta+u_z^2(1-cs\theta)
+\end{array}\right]$$
+\end{document}

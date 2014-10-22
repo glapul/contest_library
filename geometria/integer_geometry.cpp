@@ -5,12 +5,14 @@
 #include<vector>
 #include<algorithm>
 #include<cassert>
+#include<cmath>
 using namespace std;
 //#define int long long //uncomment this to use long long instead of int. Beware of long long overflow!
 struct point
 {
+    //also treated like a vector. If a function uses point as a vector there is an adequate comment in its definition
     long long x,y;
-    point(){}
+    point():x(0),y(0) {}
     point(long long x, long long y): x(x),y(y){}
     point(pair<long long,long long> p) : x(p.first),y(p.second){}
     bool operator==(const point & other) const
@@ -71,7 +73,7 @@ struct angle_comparer
         return CCW(a-zero,b-zero);
     }
 };
-vector<point> polar_sorted_around_point(vector<point> &v, point center) //assumes that x isn't in v
+vector<point> polar_sorted_around_point(vector<point> &v, point center) //assumes that center isn't in v
 {
     vector<point> upper, lower;
     for(auto &i: v)
@@ -114,6 +116,36 @@ vector<point> convex_hull(vector<point> points)
     upper.insert(upper.end(),lower.begin(),lower.end());
     return upper;
 }
-int main(){}
+struct segment
+{
+    point first, second;
+    segment():first(point()),second(point()){}
+    segment(point first, point second):first(first),second(second){}
+    segment(pair<point,point>p):first(p.first), second(p.second){}
+    long long length_squared()
+    {
+        return (first-second).length_squared();
+    }
+    double length()
+    {
+        return sqrt(length_squared());
+    }
+};
+#define st first
+#define nd second
+#define _ll long long
+bool intersect(segment & a, segment & b)
+{
+    _ll bst = vector_product(a.st-b.st, a.nd-b.st),
+        bnd = vector_product(a.st-b.nd, a.nd-b.nd),
+        ast = vector_product(b.st-a.st, b.nd-a.st),
+        anD = vector_product(b.st-a.nd, b.nd-a.nd);
+    if(ast*bst!=0)
+    {
+        if(ast < 0 && )
+    }
+
+}
+
 
 
