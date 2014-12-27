@@ -6,10 +6,15 @@ import matplotlib.patches as mpatches
 import matplotlib.pyplot as plt
 
 
+
+def read_polygon():
+    numbers = [float(i) for i in raw_input().split()]
+    xs = numbers[::2]
+    ys = numbers[1::2]
+    return zip(xs, ys)
+
+
 ax = plt.subplot()
-
-
-vertices = [(0,0),(0,1),(1,1),(1,0)]
 def draw_poly(vertices, line_style = 'go-'):
     global ax
     if len(vertices) < 1:
@@ -22,10 +27,20 @@ def draw_poly(vertices, line_style = 'go-'):
     path = mpath.Path(verts, codes)
     x, y = zip(*path.vertices)
     line, = ax.plot(x, y, line_style)
+###############################################################################
+# your code goes here
+poly = read_polygon()
+point = read_polygon()
+point2 = read_polygon()
+point3 = read_polygon()
+draw_poly(poly)
+draw_poly(point, 'rs-')
+draw_poly(point2, 'bo-')
+draw_poly(point3, 'bo-')
 
+# stahp
+###############################################################################
 
-draw_poly(vertices)
-draw_poly([(1,2), (2,1), (0,0)], 'r^--')
 ax.grid()
 ax.axis('equal')
 plt.show()
