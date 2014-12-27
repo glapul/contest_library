@@ -1,21 +1,5 @@
 //Michał Glapa
-#include<cstdio>
-#include<set>
-#include<vector>
-#include<algorithm>
-#include<queue>
-#include<map>
-#include<cstdlib>
-#include<time.h>
-#include<string>
-#include<stack>
-#include<cmath>
-#include<iostream>
-#include<cstring>
-#include<complex>
-#include<unordered_set>
-#include<unordered_map>
-#include<numeric>
+#include<bits/stdc++.h>
 using namespace std;
 #define FOR(i,j,k) for(int i=j;i<=k;i++)
 #define REP(i,n) for(int i=0;i<n;i++)
@@ -40,24 +24,19 @@ typedef vector<int> vi;
 typedef pair<int,int> pii;
 
 //reading and printing
-void read(int &n) {scanf("%lld",&n);}
-void read(double &d) {scanf("%lf",&d);}
-void read(string &s) {cin >>s;}
-void read(char * c) {scanf("%s",c);}
+template<typename T>
+void read(T & a) {cin >> a;}
 template<typename T>
 void read(vector<T> & v, int n) {int tmp; REP(i,n){read(tmp); v.pb(tmp);};}
 template<typename T, typename V>
 void read(pair<T,V> & p) {read(p.x); read(p.y);}
-void print(int &n) {printf("%lld\n",n);}
-void print(double &d) {printf("%.9lf\n",d);}
-void print(string &s) {cout << s << endl;}
-void print(char *c) {printf("%s\n",c);}
-void print_(int &n) {printf("%lld ",n);}
-void print_(double & d) {printf("%lf ",d);}
-void print_(string &s) {cout << s <<" ";}
-void print_(char * c){printf("%s ",c);}
 template<typename T>
-void print(vector<T> &v) {for(auto &i : v) print_(i); printf("\n");}
+void print(T & a) {cout << a << "\n";}
+void print(char * s) {printf("%s\n",s);}
+template<typename T>
+void print_(T & a) {cout << a <<" ";}
+template<typename T>
+void print(vector<T> &v) {for(auto &i : v) print_(i); cout<<"\n";}
 template<typename T,typename V>
 void print(pair<T,V> &p) {print_(p.x);print(p.y);}
 template<typename T,typename V>

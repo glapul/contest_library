@@ -1,4 +1,4 @@
-Biblioteczka geometryczna Jakuba Onufrego Wojtaszczyka
+//Biblioteczka geometryczna Jakuba Onufrego Wojtaszczyka
 
 // V 1.04, 8.VI
 // ** Zasady korzystania **
@@ -91,7 +91,7 @@ inline pt operator* (const ld &lam, const pt &A) {
 
 inline bool operator== (const pt &A, const pt &B) {
   REP (i, DIM) if (!iszero(A.s[i] - B.s[i])) return 0;
-  return 1; 
+  return 1;
 }
 
 inline void ppt (const pt &A) {pd(A.X);printf(" ");pd(A.Y);printf(" ");}
@@ -142,12 +142,12 @@ inline ld is (const pt &A, const pt &B) {
   return A.X * B.X + A.Y * B.Y;
 }
 
-/* Przeciecie dwoch prostych - algorytm Malcina 
-   Skala to stosunek pola trojkata do pola czworokata 
+/* Przeciecie dwoch prostych - algorytm Malcina
+   Skala to stosunek pola trojkata do pola czworokata
    Dla pokrywajacych sie prostych zwraca "nie" */
 
 int intersect_lin_lin (const lin &K, const lin &L, pt &res) { // 2D
-  if (abs(cp(K.dir, L.dir)) < EPS) return 0; 
+  if (abs(cp(K.dir, L.dir)) < EPS) return 0;
   ld s = cp(K.dir, K.O - L.O) / cp (K.dir, L.dir);
   res = L.O + s * L.dir;
   return 1;
@@ -175,7 +175,7 @@ int triangle (ld x, ld y, ld z) {
 }
 
 /* Obrot wzgledem (0,0) przeciwny do wskazowek zegara */
-pt rotate_origin (ld theta, const pt &A) { 
+pt rotate_origin (ld theta, const pt &A) {
   pt res;
   ld si = sinl(theta);
   ld co = cosl(theta);
@@ -185,7 +185,7 @@ pt rotate_origin (ld theta, const pt &A) {
 }
 
 /* Dowolny obrot */
-pt rotate (ld theta, const pt &A, const pt &O) { 
+pt rotate (ld theta, const pt &A, const pt &O) {
   return O + rotate_origin(theta, A-O);
 }
 
@@ -244,7 +244,7 @@ int parallel (const lin &K, const lin &L) {
   return parallel(K.dir, L.dir);
 }
 
-// Prosta prostopadla do wektora przez dany punkt 
+// Prosta prostopadla do wektora przez dany punkt
 lin perp (const pt &A, const pt &D) {
   return mlin(A, A + mpt(D.Y, -D.X));
 }
@@ -339,7 +339,7 @@ int main() {
 
 // Styczne do okregu przez dany punkt
 // W1 i W2 to punkty stycznosci, kat W1 O W2 jest skierowany przeciwnie do wskazowek zegara.
-int tangent_point (const pt &A, const circ &C, lin &W1, lin &W2) { 
+int tangent_point (const pt &A, const circ &C, lin &W1, lin &W2) {
   if (on_circ(A,C)) { // Styczna przez punkt na okregu jest styczna w tym punkcie
     W1 = perp(A, C.O - A);
     return 1;
@@ -381,7 +381,7 @@ int intersect_circ_circ (const circ &C1, const circ &C2, pt &W1, pt &W2) {
     return 1;
   }
 	// Teraz tw. cosinusow dla trojkata C1.O, C2.O i punktu przeciecia
-  ld alpha = acos((SQR(C1.R) - SQR(C2.R) + SQR(doo)) / (2.0 * C1.R * doo)); 
+  ld alpha = acos((SQR(C1.R) - SQR(C2.R) + SQR(doo)) / (2.0 * C1.R * doo));
   pt start = C1.O + (C1.R / doo) * (C2.O - C1.O);
   W1 = rotate(alpha, start, C1.O);
   W2 = rotate(-alpha, start, C1.O);
@@ -403,7 +403,7 @@ int main() {
 ld circ_segment_area(const circ &C, const lin &L) {
 	pt A, B;
 	if (intersect_lin_circ(L,C,A,B) < 2) {
-		if (na_prawo(C.O, L)) return 0.; 
+		if (na_prawo(C.O, L)) return 0.;
 		return PI * C.R * C.R;
 	}
 	return (angle(A, C.O, B) * SQR(C.R) - cp(A-C.O,B-C.O)) / 2.;
@@ -423,7 +423,7 @@ ld circ_circ_area(const circ &C1, const circ &C2) {
 
 // Okrag z trzech punktow
 int three_points (const pt &A, const pt &B, const pt &C, circ &R) {
-  if (!intersect_lin_lin(perp(0.5 * (A+B), B-A), perp(0.5 * (A+C), C-A), R.O)) 
+  if (!intersect_lin_lin(perp(0.5 * (A+B), B-A), perp(0.5 * (A+C), C-A), R.O))
     return 0;
   R.R = dist(R.O, A);
   return 1;
@@ -554,7 +554,7 @@ int main() {
   R.V.C = C;
   plcn(invert(R,O));
   plcn(invert(invert(R,O),O));
-  
+
   R.typ = 0;
   R.V.L = mlin(mpt(3,4), mpt(4,5));
   plcn(invert(R,O));
@@ -693,7 +693,7 @@ vector<circ> three_circles (const circ &C1, const int &P1, const circ &C2, const
   vector<circ> res;
   circ CR;
   REP (i, SIZE(candidates)) if (check_pt_circles(C,P,candidates[i],CR)) res.PB(CR);
-  return res; 
+  return res;
 }
 
 // SPIS FUNKCJI
@@ -703,7 +703,7 @@ vector<circ> three_circles (const circ &C1, const int &P1, const circ &C2, const
 //   operator+, operator-, operator== (pt A, pt B)
 //   operator* (ld lambda, pt A)
 //   ppt, pptn, plin, plinn, pcirc, pcircn, plc, plcn - printfy
-//   mpt (ld x, ld y), mlin (pt A, pt B), mseg (pt A, pt B), 
+//   mpt (ld x, ld y), mlin (pt A, pt B), mseg (pt A, pt B),
 //     mcirc (pt O, ld R), mlincirc(lin L), mlincirc(circ C) - kreatory
 //   ld cp(pt A, pt B) = A.X * B.Y - A.Y * B.X // iloczyn wektorowy
 //   ld is(pt A, pt B) // iloczyn skalarny
