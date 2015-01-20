@@ -55,7 +55,7 @@ inline bool Test_and_split(STvertex* &w, const STedge &kraw){
     e.l += kraw.r - kraw.l + 1;
     w -> g[tEKST[e.l]] = e;
     return false;
-  } 
+  }
   return kraw.v->g.find(tEKST[kraw.l]) != kraw.v->g.end();
 }
 
@@ -86,7 +86,7 @@ STvertex* Create_suffix_tree(const char *x, int n){
   rOOT->f = top;
   e.l = 0; e.v = rOOT;
   REP(i,n){
-    e.r = i - 1; Update(e, n); 
+    e.r = i - 1; Update(e, n);
     e.r++; Canonize(e, x);
   }
   return rOOT;
@@ -111,11 +111,11 @@ void Create_suffix_arrays(STvertex *root, const char *x, int *suftab, int *revsu
   lcp[0] = 0;
   REP(i,n){
     if (acc > 0) acc--;
-    if (revsuf[i] == 0) acc = 0; else { 
+    if (revsuf[i] == 0) acc = 0; else {
       int pos = revsuf[i];
       while (x[i + acc] == x[suftab[pos - 1] + acc]) acc++;
     }
-    lcp[revsuf[i]] = acc; 
+    lcp[revsuf[i]] = acc;
   }
 }
 
@@ -146,7 +146,7 @@ int main(){
   STvertex *r = Create_suffix_tree(x.c_str(), n);
 
   printf("%d %d %d\n", Find("abcaa", r, x.c_str()), Find("abcd", r, x.c_str()), Find("abcabcaabbcc", r, x.c_str()));
-  
+
   Create_suffix_arrays(r, x.c_str(), suftab, revsuf, lcp);
   REP(i,n) printf("i = %d, suftab[i] = %d, lcp[i] = %d, revsuf[i] = %d\n", i, suftab[i], lcp[i], revsuf[i]);
   STDelete(r);

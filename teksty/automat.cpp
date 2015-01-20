@@ -1,7 +1,7 @@
 /* Jakub Radoszewski
  * Minimalizacja automatu skoñczonego nad alfabetem unarnym
  * Z³o¿ono¶æ czasowa i pamiêciowa: O(n).
- * 
+ *
  * U¿ycie:
  * liczba_stanów_automatu stan_pocz±tkowy
  * przej¶cia (na co siê przechodzi ze stanu i-tego)

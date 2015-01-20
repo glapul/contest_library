@@ -48,7 +48,7 @@ int licz(int m)
   while (k > 0)
   {
     if (k - fib[i] >= 0)
-    { 
+    {
       k -= fib[i];
       wyn += (nr - i - 1 < 0) ? -1 : (fib[nr - i - 1] * ((nr - i - 1) % 2 ? -1 : 1));
     } /* if */
@@ -63,7 +63,7 @@ void inicjuj()
   fib[0] = 1; fib[1] = 2;
   for (int i = 2; i <= n; i++)
     fib[i] = fib[i - 1] + fib[i - 2];
-  
+
   f[0] = "a"; f[1] = "ab";
   for (int i = 2; i <= n; i++)
     f[i] = f[i - 1] + f[i - 2];

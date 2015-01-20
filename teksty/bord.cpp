@@ -10,10 +10,10 @@ void licz_Bord(char *x, int n)
   Bord[0] = t = - 1;
   for (int j = 1; j <= n; ++j)
   {
-    while (t >= 0 && x[t]!=x[j-1]) 
+    while (t >= 0 && x[t]!=x[j-1])
       t = Bord[t];
     Bord[j] = ++t;
-  } 
+  }
 }
 
 /* Procedura ta oblicza wartosci tablicy SBord*/
@@ -32,9 +32,9 @@ void licz_SBord(char *x, int n)
 /*Alternatywna metoda korzystajaca z tablicy PREF*/
 void licz_SBord2(char *x, int n)
 {
-  for (int j = 0; j <= n; ++j) 
+  for (int j = 0; j <= n; ++j)
     SBord[j] = -1;
-  
+
   for (int j = n; j >= 1; --j)
     SBord[j + PREF[j] - 1] = PREF[j];
 

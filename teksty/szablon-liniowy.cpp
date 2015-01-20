@@ -31,10 +31,10 @@ szablony[MAX_LEN + 1];     // Najkrótsze szablony dla kolejnych
 void licz_pref_suf(string slowo)
 {
 	int k = 0;
-  
+
   /* Inicjalizacja funkcji prefiksowej. */
 	pref_suf[0] = pref_suf[1] = 0;
-  
+
   /* Wyliczanie kolejnych warto¶ci funkcji prefiksowej. */
 	for (int q = 2; q <= n; q++)
 	{
@@ -81,7 +81,7 @@ int main()
       /* je¿eli nie, to ju¿ jest ustawione szablony[i]=i. */
     } /* if */
   } /* for */
-  
+
   /* Wypisanie wyniku */
   printf("%d\n", szablony[n]);
   return 0;
