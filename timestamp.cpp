@@ -5,7 +5,12 @@ typedef unsigned long long timestamp_t;
 static timestamp_t get_timestamp () {
     struct timeval now;
     gettimeofday (&now, NULL);
-    return  (now.tv_usec + (timestamp_t)now.tv_sec * 1000000) / 1000000.L;
+    return  (now.tv_usec + (timestamp_t)now.tv_sec * 1000000);
+}
+const float DIVIDE = 1000000.0L;
+
+double compare_timestamps(timestamp_t t1, timestamp_t t2) {
+    return (t2 - t1) / DIVIDE;
 }
 
 //...
