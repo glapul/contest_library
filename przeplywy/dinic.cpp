@@ -23,9 +23,7 @@ class FlowNetwork
     private:
         int n, source, sink;
         long long flow;
-        static const long long INF = 1000000000000000000LL;
         vector<int> d,pt;
-        vector<bool> vis;
         vector<vector<Edge> > graph;
         map<pair<int,int>, int> find_edge;
         bool bfs()
@@ -69,17 +67,17 @@ class FlowNetwork
                     graph[nx.to][nx.cross_ref].f+=pushed;
                     sum+=pushed;
                     cap-=pushed;
-                    if(nx.f==0)
+                    if(cap==0)
                         break;
                 }
             }
             return sum;
         }
     public:
+        static const long long INF = 1000000000000000000LL;
         FlowNetwork(int n, int source, int sink): n(n),source(source),sink(sink),flow(0)
         {
             d = pt =  vector<int> (n+1);
-            vis = vector<bool> (n+1);
             graph = vector<vector<Edge> > (n+1);
         }
         long long compute_max_flow()
@@ -103,6 +101,15 @@ class FlowNetwork
                 int uu = find_edge[make_pair(u,v)];
                 graph[u][uu].f+=f;
             }
+        }
+        vector<int> get_cut() {
+          bfs();
+          vector<int> res;
+          for (int i = 0; i < n; i++) {
+            if (d[i] != -1)
+              res.push_back(i);
+          }
+          return res;
         }
 };
 ////////////////////////////////////////////////////////////////////////////////

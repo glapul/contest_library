@@ -53,8 +53,7 @@ int lca (int u, int v)
     }
     return last == -1 ?v :last;
 }
-int main()
-{
+int main() {
     int n;
     scanf("%d",&n);
     for(int i=0;i<n-1;i++)

@@ -29,6 +29,8 @@ struct block
     }
     void add(int qp, int qq, int v)
     {
+				if(qp > q || qq < p)
+					return;
         if(qp<=p && qq>=q)
         {
             added_value+=v;
@@ -48,6 +50,8 @@ struct block
     }
     int query(int qp, int qq)
     {
+				if(qp > q || qq < p)
+					return 0;
         if(qp<=p && qq>=q)
         {
             return sum;
