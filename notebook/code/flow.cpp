@@ -60,8 +60,8 @@ int compute_flow() {
                 relabel_counter++;
                 h[u] = 2*n+1;
                 FOREACH(i,g[u]) if(i->flow < i->cap) h[u]=min(h[u],1+h[i->v]);
-                cur[u] = g[u].begin(); 
-                continue; 
+                cur[u] = g[u].begin();
+                continue;
             }
             if (cur[u]->flow < cur[u]->cap && h[u]==h[cur[u]->v]+1) { // push
                 int d = min(e[u], cur[u]->cap - cur[u]->flow);
@@ -70,9 +70,9 @@ int compute_flow() {
                 e[u] -= d;
                 e[cur[u]->v] += d;
                 if (e[cur[u]->v]==d && cur[u]->v!=t && cur[u]->v!=s) q.push(cur[u]->v);
-            } else cur[u]++; 
+            } else cur[u]++;
         }
-        if (relabel_counter >= n) { 
+        if (relabel_counter >= n) {
             REP(i,n) h[i]=2*n+1;
             bfs(t,0);
             bfs(s,n);
@@ -103,7 +103,7 @@ int edmonds(int s, int t) {
     for(;;) {
         REP(i,n) p[i]=-1;
         for(q[b=e=0]=s;b<=e;b++)
-            REP(v,n) 
+            REP(v,n)
                 if (flow[q[b]][v] < cap[q[b]][v] && p[v]<0)
                     p[q[++e]=v] = q[b];
         if (p[t]<0) break;

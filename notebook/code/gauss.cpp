@@ -7,10 +7,10 @@
 // [R] oraz [R-osobl] jezeli tego nie wiemy.
 const int N = 100;
 const int M = 100;
- 
+
 typedef unsigned long long ULL; // [Z2]
 const double EPS = 1e-9;        // [R-osobl]
- 
+
 // INPUT, jest psuty! (psuty, nie pusty!)
 int A[N][M], B[N];              // [Zp], [Zn]
 ULL A[N][(M+63)/64]; bool B[N]; // [Z2]
@@ -37,14 +37,14 @@ int gauss(int n, int m) {
         }
         break;                    // [Zp], [Zn], [Z2], [R-osobl]
         found:                    // [Zp], [Zn], [Z2], [R-osobl]
-        dim = i+1; 
-        if (r != i) { 
+        dim = i+1;
+        if (r != i) {
             REP(j,m)                        // [Zp], [Zn], [R]
             REP(j,(m+63)/64)                // [Z2]
-                swap(A[i][j], A[r][j]); 
-            swap(B[i], B[r]); 
+                swap(A[i][j], A[r][j]);
+            swap(B[i], B[r]);
         }
-        if (c != i) { 
+        if (c != i) {
             REP(j,n) {
                 swap(A[j][i], A[j][c]);                  // [Zp], [Zn], [R]
                 if ((((A[j][i/64]&(1ULL<<(i&63)))>>(i&63))) !=      // [Z2]
@@ -53,7 +53,7 @@ int gauss(int n, int m) {
                     A[j][c/64] ^= (1ULL<<(c&63));                   // [Z2]
                 }                                                   // [Z2]
             }
-            swap(P[i], P[c]); 
+            swap(P[i], P[c]);
         }
         FOR(j,i+1,n) {
             if (A[j][i/64]&(1ULL<<(i&63))) {            // [Z2]

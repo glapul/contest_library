@@ -8,9 +8,13 @@ import matplotlib.pyplot as plt
 
 
 def read_polygon():
-    numbers = [float(i) for i in raw_input().split()]
-    xs = numbers[::2]
-    ys = numbers[1::2]
+    xs = []
+    ys = []
+    n = int(raw_input())
+    for i in range(n):
+        x, y = (float(i) for i in raw_input().split())
+        xs.append(x)
+        ys.append(y)
     return zip(xs, ys)
 
 
@@ -30,13 +34,13 @@ def draw_poly(vertices, line_style = 'go-'):
 ###############################################################################
 # your code goes here
 poly = read_polygon()
-point = read_polygon()
-point2 = read_polygon()
-point3 = read_polygon()
+# point = read_polygon()
+# point2 = read_polygon()
+# point3 = read_polygon()
 draw_poly(poly)
-draw_poly(point, 'rs-')
-draw_poly(point2, 'bo-')
-draw_poly(point3, 'bo-')
+# draw_poly(point, 'rs-')
+# draw_poly(point2, 'bo-')
+# draw_poly(point3, 'bo-')
 
 # stahp
 ###############################################################################
