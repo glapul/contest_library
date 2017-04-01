@@ -1,4 +1,5 @@
-Biblioteczka do używania na konkursach programistycznych
-========================================================
+Various codes for use in algorithms competitions
+================================================
 
-W trakcie tworzenia.
+Keep in mind I wrote those in high school, so they're probably of
+subpar quality.
